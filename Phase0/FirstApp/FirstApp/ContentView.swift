@@ -6,7 +6,7 @@ struct ContentView: View {
     @State private var tick = 0
 
     var body: some View {
-        Text("Hello, World!!")
+        Text("Tick \(tick)")
             .padding()
             .task {
                 while !Task.isCancelled {
