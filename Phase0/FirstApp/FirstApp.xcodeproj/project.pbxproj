@@ -6,20 +6,41 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		007D2CD1309B799D00766178 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = FirstApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		000000000000000000000120 /* FirstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirstApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000120 /* FirstApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		007D2CCD309B799D00766178 /* FirstAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FirstAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		000000000000000000000010 /* FirstApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "FirstApp";
+			path = FirstApp;
+			sourceTree = "<group>";
+		};
+		007D2CCE309B799D00766178 /* FirstAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FirstAppTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000130000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		007D2CCA309B799D00766178 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -31,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000010 /* FirstApp */,
+				007D2CCE309B799D00766178 /* FirstAppTests */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000120 /* FirstApp.app */,
+				007D2CCD309B799D00766178 /* FirstAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,10 +82,31 @@
 			fileSystemSynchronizedGroups = (
 				000000000000000000000010 /* FirstApp */,
 			);
-			name = "FirstApp";
+			name = FirstApp;
 			productName = FirstApp;
 			productReference = 000000000000000000000120 /* FirstApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		007D2CCC309B799D00766178 /* FirstAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 007D2CD5309B799D00766178 /* Build configuration list for PBXNativeTarget "FirstAppTests" */;
+			buildPhases = (
+				007D2CC9309B799D00766178 /* Sources */,
+				007D2CCA309B799D00766178 /* Frameworks */,
+				007D2CCB309B799D00766178 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				007D2CD2309B799D00766178 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				007D2CCE309B799D00766178 /* FirstAppTests */,
+			);
+			name = FirstAppTests;
+			productName = FirstAppTests;
+			productReference = 007D2CCD309B799D00766178 /* FirstAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -71,11 +115,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2710;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					000000000000000100000000 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					007D2CCC309B799D00766178 = {
+						CreatedOnToolsVersion = 27.1;
 					};
 				};
 			};
@@ -94,12 +141,18 @@
 			projectRoot = "";
 			targets = (
 				000000000000000100000000 /* FirstApp */,
+				007D2CCC309B799D00766178 /* FirstAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		000000000000000140000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		007D2CCB309B799D00766178 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -112,7 +165,20 @@
 			files = (
 			);
 		};
+		007D2CC9309B799D00766178 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		007D2CD2309B799D00766178 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* FirstApp */;
+			targetProxy = 007D2CD1309B799D00766178 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000011000000 /* Debug configuration for PBXProject "FirstApp" */ = {
@@ -321,6 +387,45 @@
 			};
 			name = Release;
 		};
+		007D2CD3309B799D00766178 /* Debug configuration for PBXNativeTarget "FirstAppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.FirstApp.FirstAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		007D2CD4309B799D00766178 /* Release configuration for PBXNativeTarget "FirstAppTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.FirstApp.FirstAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -337,6 +442,14 @@
 			buildConfigurations = (
 				000000000000000111000000 /* Debug configuration for PBXNativeTarget "FirstApp" */,
 				000000000000000112000000 /* Release configuration for PBXNativeTarget "FirstApp" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		007D2CD5309B799D00766178 /* Build configuration list for PBXNativeTarget "FirstAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				007D2CD3309B799D00766178 /* Debug configuration for PBXNativeTarget "FirstAppTests" */,
+				007D2CD4309B799D00766178 /* Release configuration for PBXNativeTarget "FirstAppTests" */,
 			);
 			defaultConfigurationName = Release;
 		};
