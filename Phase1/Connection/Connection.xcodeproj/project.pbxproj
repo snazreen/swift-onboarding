@@ -8,18 +8,42 @@
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Connection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C011EC01009B799D00766101 /* ConnectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C011EC0C009B799D0076610C /* Exceptions for "Connection" folder in "Connection" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"ConnectionTests/ConnectionTests.swift",
+			);
+			target = 000000000000000100000000 /* Connection */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		000000000000000000000010 /* Connection */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C011EC0C009B799D0076610C /* Exceptions for "Connection" folder in "Connection" target */,
+			);
 			path = Connection;
+			sourceTree = "<group>";
+		};
+		C011EC02009B799D00766102 /* ConnectionTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Connection/ConnectionTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000130000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		C011EC03009B799D00766103 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -39,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000120 /* Connection.app */,
+				C011EC01009B799D00766101 /* ConnectionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +89,27 @@
 			productReference = 000000000000000000000120 /* Connection.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C011EC06009B799D00766106 /* ConnectionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C011EC0B009B799D0076610B /* Build configuration list for PBXNativeTarget "ConnectionTests" */;
+			buildPhases = (
+				C011EC05009B799D00766105 /* Sources */,
+				C011EC03009B799D00766103 /* Frameworks */,
+				C011EC04009B799D00766104 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C011EC08009B799D00766108 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C011EC02009B799D00766102 /* ConnectionTests */,
+			);
+			name = ConnectionTests;
+			productName = ConnectionTests;
+			productReference = C011EC01009B799D00766101 /* ConnectionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -76,6 +122,10 @@
 				TargetAttributes = {
 					000000000000000100000000 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					C011EC06009B799D00766106 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 000000000000000100000000;
 					};
 				};
 			};
@@ -94,12 +144,18 @@
 			projectRoot = "";
 			targets = (
 				000000000000000100000000 /* Connection */,
+				C011EC06009B799D00766106 /* ConnectionTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		000000000000000140000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		C011EC04009B799D00766104 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -112,7 +168,30 @@
 			files = (
 			);
 		};
+		C011EC05009B799D00766105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXContainerItemProxy section */
+		C011EC07009B799D00766107 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = Connection;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		C011EC08009B799D00766108 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* Connection */;
+			targetProxy = C011EC07009B799D00766107 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000011000000 /* Debug configuration for PBXProject "Connection" */ = {
@@ -323,6 +402,46 @@
 			};
 			name = Release;
 		};
+		C011EC09009B799D00766109 /* Debug configuration for PBXNativeTarget "ConnectionTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9W38C85T65;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nazreenpersonalteam.ConnectionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Connection.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Connection";
+			};
+			name = Debug;
+		};
+		C011EC0A009B799D0076610A /* Release configuration for PBXNativeTarget "ConnectionTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9W38C85T65;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nazreenpersonalteam.ConnectionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Connection.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Connection";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -340,6 +459,15 @@
 				000000000000000111000000 /* Debug configuration for PBXNativeTarget "Connection" */,
 				000000000000000112000000 /* Release configuration for PBXNativeTarget "Connection" */,
 			);
+			defaultConfigurationName = Release;
+		};
+		C011EC0B009B799D0076610B /* Build configuration list for PBXNativeTarget "ConnectionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C011EC09009B799D00766109 /* Debug configuration for PBXNativeTarget "ConnectionTests" */,
+				C011EC0A009B799D0076610A /* Release configuration for PBXNativeTarget "ConnectionTests" */,
+			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
