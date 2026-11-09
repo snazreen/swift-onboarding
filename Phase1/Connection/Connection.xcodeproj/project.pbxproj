@@ -6,6 +6,16 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		C011EC07009B799D00766107 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = Connection;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Connection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C011EC01009B799D00766101 /* ConnectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConnectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -15,7 +25,7 @@
 		C011EC0C009B799D0076610C /* Exceptions for "Connection" folder in "Connection" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"ConnectionTests/ConnectionTests.swift",
+				ConnectionTests/ConnectionTests.swift,
 			);
 			target = 000000000000000100000000 /* Connection */;
 		};
@@ -30,7 +40,7 @@
 			path = Connection;
 			sourceTree = "<group>";
 		};
-		C011EC02009B799D00766102 /* ConnectionTests */ = {
+		C011EC02009B799D00766102 /* Connection/ConnectionTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Connection/ConnectionTests;
 			sourceTree = "<group>";
@@ -56,6 +66,7 @@
 			children = (
 				000000000000000000000010 /* Connection */,
 				000000000000000000000020 /* Products */,
+				00909933309E1BBA00010AD4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +77,14 @@
 				C011EC01009B799D00766101 /* ConnectionTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		00909933309E1BBA00010AD4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C011EC02009B799D00766102 /* Connection/ConnectionTests */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,7 +122,7 @@
 				C011EC08009B799D00766108 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				C011EC02009B799D00766102 /* ConnectionTests */,
+				C011EC02009B799D00766102 /* Connection/ConnectionTests */,
 			);
 			name = ConnectionTests;
 			productName = ConnectionTests;
@@ -174,16 +193,6 @@
 			);
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXContainerItemProxy section */
-		C011EC07009B799D00766107 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 000000000000000000000000 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 000000000000000100000000;
-			remoteInfo = Connection;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXTargetDependency section */
 		C011EC08009B799D00766108 /* PBXTargetDependency */ = {
@@ -467,7 +476,6 @@
 				C011EC09009B799D00766109 /* Debug configuration for PBXNativeTarget "ConnectionTests" */,
 				C011EC0A009B799D0076610A /* Release configuration for PBXNativeTarget "ConnectionTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
