@@ -1,5 +1,28 @@
 import Combine
+import Foundation
 import Playgrounds
+
+final class FakeCastEngine {
+    let devices = CurrentValueSubject<[CastDevice], Never>([])
+    private var ticks: AnyCancellable?
+    private var index = 0
+    private let lists: [[CastDevice]]
+
+    init(lists: [[CastDevice]]) {
+        self.lists = lists
+        let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        ticks = timer.sink { [weak self] _ in
+            guard let self else { return }
+            self.devices.send(self.lists[self.index])
+            self.index = (self.index + 1) % self.lists.count
+        }
+    }
+
+    func stop() {
+        ticks?.cancel()
+        ticks = nil
+    }
+}
 
 #Playground {
 
@@ -41,15 +64,15 @@ import Playgrounds
 
     // CurrentValueSubject is a publisher that sends the latest value to its subscribers.
 
-    let devices = CurrentValueSubject<[CastDevice], Never>([])
+    /* let devices = CurrentValueSubject<[CastDevice], Never>([])
 
-    /* let subscription = devices
+    let subscription = devices
         .map { list in
             list.map(\.name)
         }
         .sink { names in
             print(names)
-        } */
+        }
 
     let subscription =
         devices
@@ -59,6 +82,7 @@ import Playgrounds
         .filter { names in
             !names.isEmpty
         }
+        .removeDuplicates()
         .sink { names in
             print(names)
         }
@@ -66,6 +90,60 @@ import Playgrounds
     devices.send([
         CastDevice(id: "1", name: "Living Room", type: .tv)
     ])
-    _ = subscription
+    devices.send([
+        CastDevice(id: "1", name: "Living Room", type: .tv)
+    ])
+    _ = subscription */
+
+    /* let livingRoom = CastDevice(id: "1", name: "Living Room", type: .tv)
+    let kitchen = CastDevice(id: "2", name: "Kitchen", type: .tv)
+    let lists: [[CastDevice]] = [
+        [livingRoom],
+        [livingRoom, kitchen],
+        [kitchen],
+    ]
+    var index = 0
+
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let ticks = timer.sink { _ in
+        devices.send(lists[index])
+        index = (index + 1) % lists.count
+    }
+    try await Task.sleep(for: .seconds(4))
+    _ = ticks */
+
+    /* let livingRoom = CastDevice(id: "1", name: "Living Room", type: .tv)
+    let kitchen = CastDevice(id: "2", name: "Kitchen", type: .tv)
+    let engine = FakeCastEngine(lists: [
+        [livingRoom],
+        [livingRoom, kitchen],
+        [kitchen],
+    ])
+    let subscription = engine.devices
+        .map { list in list.map(\.name) }
+        .filter { names in !names.isEmpty }
+        .removeDuplicates()
+        .sink { names in
+            print(names)
+        }
+
+    try await Task.sleep(for: .seconds(3))
+    engine.stop()
+    try await Task.sleep(for: .seconds(2))
+    _ = subscription */
+
+    let rapid = PassthroughSubject<[String], Never>()
+    let debounced =
+        rapid
+        .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+        .sink { names in
+            print(names)
+        }
+
+    rapid.send(["Living Room"])
+    rapid.send(["Living Room", "Kitchen"])
+    rapid.send(["Kitchen"])
+    try await Task.sleep(for: .seconds(1))
+    _ = debounced
 
 }
