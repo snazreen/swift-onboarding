@@ -4,6 +4,7 @@ import Playgrounds
 
 final class FakeCastEngine {
     let devices = CurrentValueSubject<[CastDevice], Never>([])
+    let connection = CurrentValueSubject<ConnectionState, Never>(.disconnected)
     private var ticks: AnyCancellable?
     private var index = 0
     private let lists: [[CastDevice]]
@@ -13,7 +14,9 @@ final class FakeCastEngine {
         let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         ticks = timer.sink { [weak self] _ in
             guard let self else { return }
-            self.devices.send(self.lists[self.index])
+            let list = self.lists[self.index]
+            self.devices.send(list)
+            self.connection.send(self.nextConnection(for: list))
             self.index = (self.index + 1) % self.lists.count
         }
     }
@@ -21,6 +24,23 @@ final class FakeCastEngine {
     func stop() {
         ticks?.cancel()
         ticks = nil
+    }
+
+    private func nextConnection(for list: [CastDevice]) -> ConnectionState {
+        switch index {
+        case 0:
+            return .discovering
+        case 1:
+            if let device = list.first {
+                return .connecting(device)
+            }
+            return .discovering
+        default:
+            if let device = list.first {
+                return .connected(device)
+            }
+            return .discovering
+        }
     }
 }
 
@@ -145,5 +165,18 @@ final class FakeCastEngine {
     rapid.send(["Kitchen"])
     try await Task.sleep(for: .seconds(1))
     _ = debounced
+
+    let livingRoom = CastDevice(id: "1", name: "Living Room", type: .tv)
+    let engine = FakeCastEngine(lists: [
+        [],
+        [livingRoom],
+        [livingRoom],
+    ])
+    let states = engine.connection.sink { state in
+        print(state)
+    }
+    try await Task.sleep(for: .seconds(4))
+    engine.stop()
+    _ = states
 
 }

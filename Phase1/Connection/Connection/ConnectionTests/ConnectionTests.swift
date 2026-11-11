@@ -171,4 +171,30 @@ struct ConnectionStateTests {
         #expect(snapshots.contains(["Kitchen"]))
         _ = subscription
     }
+
+    @Test func discoveryStopsPublishing() async throws {
+        let livingRoom = CastDevice(id: "1", name: "Living Room", type: .tv)
+        let kitchen = CastDevice(id: "2", name: "Kitchen", type: .tv)
+        let engine = FakeCastEngine(lists: [
+            [livingRoom],
+            [kitchen],
+        ])
+        var snapshots: [[String]] = []
+        let subscription = engine.devices
+            .map { list in list.map(\.name) }
+            .filter { found in !found.isEmpty }
+            .removeDuplicates()
+            .sink { found in
+                snapshots.append(found)
+            }
+
+        try await Task.sleep(for: .milliseconds(1500))
+        engine.stop()
+        let countAtStop = snapshots.count
+        try await Task.sleep(for: .milliseconds(1500))
+
+        #expect(countAtStop > 0)
+        #expect(snapshots.count == countAtStop)
+        _ = subscription
+    }
 }
