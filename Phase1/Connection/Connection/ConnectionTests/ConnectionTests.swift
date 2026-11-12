@@ -197,4 +197,29 @@ struct ConnectionStateTests {
         #expect(snapshots.count == countAtStop)
         _ = subscription
     }
+
+    @Test func discoveryPublishesConnectionStates() async throws {
+        let livingRoom = CastDevice(id: "1", name: "Living Room", type: .tv)
+        let engine = FakeCastEngine(lists: [
+            [livingRoom],
+            [livingRoom],
+            [livingRoom],
+        ])
+        var states: [ConnectionState] = []
+        let subscription = engine.connection.sink { state in
+            states.append(state)
+        }
+
+        try await Task.sleep(for: .milliseconds(3500))
+        engine.stop()
+
+        #expect(
+            states == [
+                .disconnected,
+                .discovering,
+                .connecting(livingRoom),
+                .connected(livingRoom),
+            ])
+        _ = subscription
+    }
 }
