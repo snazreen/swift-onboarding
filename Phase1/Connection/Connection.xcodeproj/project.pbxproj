@@ -26,6 +26,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ConnectionTests/ConnectionTests.swift,
+				ConnectionTests/FakeCastEngineTests.swift,
 			);
 			target = 000000000000000100000000 /* Connection */;
 		};
