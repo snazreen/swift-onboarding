@@ -124,7 +124,7 @@ struct ContentView: View {
 
 // private
 
-final class DeviceSelection: ObservableObject {
+/* final class DeviceSelection: ObservableObject {
     @Published private var name = "None"
 
     var title: String { name }
@@ -160,6 +160,38 @@ struct ContentView: View {
         .environmentObject(selection)
         .onAppear {
             ticket = selection.objectWillChange.sink {
+                print("object will change")
+            }
+        }
+    }
+} */
+
+struct DeviceList: View {
+    @EnvironmentObject var viewModel: DevicePickerViewModel
+
+    var body: some View {
+        List(viewModel.devices) { device in
+            Button(device.name) {
+                viewModel.choose(device)
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+   // @StateObject private var viewModel = DevicePickerViewModel()
+   //SOLID
+    @StateObject private var viewModel = DevicePickerViewModel(log: MemoryLog())
+    @State private var ticket: AnyCancellable?
+
+    var body: some View {
+        VStack {
+            Text(viewModel.title)
+            DeviceList()
+        }
+        .environmentObject(viewModel)
+        .onAppear {
+            ticket = viewModel.objectWillChange.sink {
                 print("object will change")
             }
         }

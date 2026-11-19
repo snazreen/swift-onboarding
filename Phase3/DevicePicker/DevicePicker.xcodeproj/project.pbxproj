@@ -302,7 +302,6 @@
 				000000000000000011000000 /* Debug configuration for PBXProject "DevicePicker" */,
 				000000000000000012000000 /* Release configuration for PBXProject "DevicePicker" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		000000000000000110000000 /* Build configuration list for PBXNativeTarget "DevicePicker" */ = {
@@ -311,7 +310,6 @@
 				000000000000000111000000 /* Debug configuration for PBXNativeTarget "DevicePicker" */,
 				000000000000000112000000 /* Release configuration for PBXNativeTarget "DevicePicker" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
