@@ -178,7 +178,7 @@ struct DeviceList: View {
     }
 }
 
-struct ContentView: View {
+/* struct ContentView: View {
    // @StateObject private var viewModel = DevicePickerViewModel()
    //SOLID
     @StateObject private var viewModel = DevicePickerViewModel(log: MemoryLog())
@@ -195,6 +195,27 @@ struct ContentView: View {
                 print("object will change")
             }
         }
+    }
+} */
+
+struct ContentView: View {
+    @State private var title = "Loading…"
+
+    var body: some View {
+        Text(title)
+            .task {
+                do {
+                    /* let movie = try await loadMovie()
+                   title = "\(movie.title) \(movie.id)"
+                   print(movie.title, movie.id) */
+                   let posts = try await loadPosts()
+                   title = posts[0].title
+                   print(posts[0].author)
+                } catch {
+                    title = "Failed"
+                    print(error)
+                }
+            }
     }
 }
 
