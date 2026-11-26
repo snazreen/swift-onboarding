@@ -198,7 +198,7 @@ struct DeviceList: View {
     }
 } */
 
-struct ContentView: View {
+/* struct ContentView: View {
     @State private var title = "Loading…"
 
     var body: some View {
@@ -216,6 +216,45 @@ struct ContentView: View {
                     print(error)
                 }
             }
+    }
+} */
+
+/* struct ContentView: View {
+    @State private var taps = 0
+
+    var body: some View {
+        let _ = print("body \(taps)")
+        Button("Taps: \(taps)") {
+            taps += 1
+        }
+    }
+} */
+
+struct TapButton: View {
+    @State private var taps = 0
+
+    var body: some View {
+        let _ = print("button \(taps)")
+        Button("Taps: \(taps)") {
+            taps += 1
+        }
+    }
+}
+
+struct DeviceLabel: View {
+    var body: some View {
+        let _ = print("label")
+        Text("Living Room")
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        let _ = print("home")
+        VStack {
+            DeviceLabel()
+            TapButton()
+        }
     }
 }
 
