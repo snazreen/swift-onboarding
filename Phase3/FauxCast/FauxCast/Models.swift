@@ -25,8 +25,3 @@ enum ConnectionState: Equatable {
     case reconnecting
     case failed(FailureReason)
 }
-
-struct Media {
-    let title: String
-    let subtitle: String
-}

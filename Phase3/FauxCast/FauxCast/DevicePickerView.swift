@@ -15,20 +15,38 @@ struct DevicePickerView: View {
                 } else {
                     List(viewModel.devices) { device in
                         Button {
-                            Task { await viewModel.connect(to: device) }
+                            viewModel.connect(to: device)
                             dismiss()
                         } label: {
-                            Label(device.name, systemImage: device.type == .tv ? "tv" : "cable.connector")
+                            HStack {
+                                Label(device.name, systemImage: device.type == .tv ? "tv" : "cable.connector")
+                                Spacer()
+                                if viewModel.connectedDevice == device {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Cast to…")
+            .toolbarTitleDisplayMode(.inline)
             .toolbar {
-                Button("Cancel") { dismiss() }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                if viewModel.connectedDevice != nil {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Stop casting", role: .destructive) {
+                            viewModel.disconnect()
+                            dismiss()
+                        }
+                    }
+                }
             }
         }
         .frame(minWidth: 320, minHeight: 280)
-        .task { await viewModel.startDiscovery() }
+        .onAppear { viewModel.startDiscovery() }
+        .onDisappear { viewModel.stopDiscovery() }
     }
 }

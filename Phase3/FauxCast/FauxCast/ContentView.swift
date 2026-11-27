@@ -2,27 +2,49 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = HomeViewModel()
-    @State private var showPicker = false
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text(viewModel.media.title)
-                .font(.largeTitle.bold())
-            Text(viewModel.media.subtitle)
-                .foregroundStyle(.secondary)
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    if let featured = viewModel.movies.first {
+                        NavigationLink {
+                            MovieDetailView(movie: featured, viewModel: viewModel)
+                        } label: {
+                            FeaturedHero(movie: featured)
+                        }
+                        .buttonStyle(.plain)
+                    }
 
-            Text(viewModel.status)
-                .padding(.top, 24)
+                    Text("Trending Now")
+                        .font(.title2.bold())
+                        .padding(.horizontal)
 
-            Button("Cast", systemImage: "tv") {
-                showPicker = true
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(viewModel.movies) { movie in
+                                NavigationLink {
+                                    MovieDetailView(movie: movie, viewModel: viewModel)
+                                } label: {
+                                    PosterCard(movie: movie)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
             }
-            .buttonStyle(.borderedProminent)
+            .navigationTitle("MAX")
+            .toolbarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    CastButton(viewModel: viewModel)
+                }
+            }
         }
-        .padding()
-        .sheet(isPresented: $showPicker) {
-            DevicePickerView(viewModel: viewModel)
-        }
+        .preferredColorScheme(.dark)
+        .task { await viewModel.loadMovies() }
     }
 }
 
